@@ -20,13 +20,29 @@ export class SeedService {
   async seed(): Promise<void> {
     this.logger.log('Starting database seeding...');
 
-    // Check if already seeded
+    // Check if already seeded with full dataset
     const authorCount = await this.authorRepo.count();
     const bookCount = await this.bookRepo.count();
 
-    if (authorCount > 0 || bookCount > 0) {
+    // Consider "fully seeded" if we have most of the expected data
+    const expectedAuthors = seedAuthors.length;
+    const expectedBooks = seedBooks.length;
+    const isFullySeeded =
+      authorCount >= expectedAuthors * 0.8 && bookCount >= expectedBooks * 0.8;
+
+    if (isFullySeeded) {
       this.logger.log(
-        `Database already contains data (${authorCount} authors, ${bookCount} books). Skipping seed.`,
+        `Database already contains full seed data (${authorCount} authors, ${bookCount} books). Skipping seed.`,
+      );
+      return;
+    }
+
+    if (authorCount > 0 || bookCount > 0) {
+      this.logger.warn(
+        `Database contains partial data (${authorCount} authors, ${bookCount} books).`,
+      );
+      this.logger.warn(
+        `Run "pnpm run seed:clear" to clear data before seeding, or seed will be skipped.`,
       );
       return;
     }
@@ -82,13 +98,13 @@ export class SeedService {
       // Delete in correct order (books first due to foreign key)
       const bookCount = await this.bookRepo.count();
       if (bookCount > 0) {
-        await this.bookRepo.delete({});
+        await this.bookRepo.clear();
         this.logger.log(`✓ Deleted ${bookCount} books`);
       }
 
       const authorCount = await this.authorRepo.count();
       if (authorCount > 0) {
-        await this.authorRepo.delete({});
+        await this.authorRepo.clear();
         this.logger.log(`✓ Deleted ${authorCount} authors`);
       }
 
