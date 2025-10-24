@@ -14,9 +14,25 @@ describe('AppController', () => {
     appController = app.get<AppController>(AppController);
   });
 
-  describe('root', () => {
-    it('should return "Hello World!"', () => {
-      expect(appController.getHello()).toBe('Hello World!');
+  describe('getApiInfo', () => {
+    it('should return API metadata', () => {
+      const result = appController.getApiInfo();
+      expect(result).toHaveProperty('name', 'Book Management API');
+      expect(result).toHaveProperty('version', '1.0.0');
+      expect(result).toHaveProperty('status', 'operational');
+      expect(result).toHaveProperty('endpoints');
+      expect(result.endpoints).toHaveProperty('authors', '/authors');
+      expect(result.endpoints).toHaveProperty('books', '/books');
+    });
+  });
+
+  describe('getHealth', () => {
+    it('should return health status', () => {
+      const result = appController.getHealth();
+      expect(result).toHaveProperty('status', 'ok');
+      expect(result).toHaveProperty('uptime');
+      expect(result).toHaveProperty('timestamp');
+      expect(typeof result.uptime).toBe('number');
     });
   });
 });
