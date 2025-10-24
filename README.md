@@ -9,6 +9,7 @@ A RESTful API for managing books and their authors, built with NestJS, TypeScrip
 - [Database Choice](#database-choice)
 - [Getting Started](#getting-started)
 - [API Documentation](#api-documentation)
+- [Postman Collection](#postman-collection)
 - [Testing](#testing)
 - [Project Structure](#project-structure)
 - [Design Decisions](#design-decisions)
@@ -297,6 +298,62 @@ All errors follow a consistent format:
 }
 ```
 
+## 📮 Postman Collection
+
+**Professional API testing made easy!** A complete Postman collection is included with:
+
+- ✅ **All API Endpoints** - Every endpoint ready to test
+- ✅ **Automated Tests** - Built-in assertions for each request
+- ✅ **Environment Variables** - Easy configuration management
+- ✅ **Realistic Examples** - Pre-populated with sample data
+- ✅ **Error Scenarios** - Examples of 404, 400, 409 responses
+
+### Quick Start
+
+1. **Import Collection**
+   ```bash
+   # Open Postman and import these files:
+   postman/Book-Management-API.postman_collection.json
+   postman/Local-Development.postman_environment.json
+   ```
+
+2. **Select Environment**
+   - Choose "Local Development" from the environment dropdown
+
+3. **Start Testing!**
+   - Make sure your API is running: `pnpm run start:dev`
+   - Click any request and hit **Send**
+
+### What's Included
+
+**Collection Structure:**
+- 🏥 Health & Info (2 requests)
+- 👤 Authors (7 requests) - Full CRUD + search + pagination
+- 📚 Books (7 requests) - Full CRUD + search + filter
+- ❌ Error Scenarios (4 requests) - 404, 400, 409 examples
+
+**Features:**
+- Auto-saving IDs (`authorId`, `bookId`) for subsequent requests
+- Test scripts with assertions on every request
+- Pre-configured with seed data for easy testing
+- Complete documentation in [`postman/README.md`](postman/README.md)
+
+### Running All Tests
+
+**Using Postman Runner:**
+```
+Click collection → Run → Select environment → Run all
+```
+
+**Using Newman (CLI):**
+```bash
+npm install -g newman
+newman run postman/Book-Management-API.postman_collection.json \
+  -e postman/Local-Development.postman_environment.json
+```
+
+📖 **Full Documentation**: See [`postman/README.md`](postman/README.md) for detailed usage guide.
+
 ## 🧪 Testing
 
 ```bash
@@ -422,7 +479,7 @@ test/
 
 4. **Documentation**
    - Swagger/OpenAPI integration
-   - Postman collection
+   - ✅ Postman collection (COMPLETED)
 
 5. **DevOps**
    - Docker containerization
