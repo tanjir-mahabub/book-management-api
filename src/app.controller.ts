@@ -6,7 +6,17 @@ export class AppController {
   constructor(private readonly appService: AppService) {}
 
   @Get()
-  getHello(): string {
-    return this.appService.getHello();
+  getApiInfo() {
+    return this.appService.getApiInfo();
+  }
+
+  @Get('health')
+  getHealth() {
+    return {
+      status: 'ok',
+      uptime: process.uptime(),
+      timestamp: new Date().toISOString(),
+      environment: process.env['NODE_ENV'] || 'development',
+    };
   }
 }
