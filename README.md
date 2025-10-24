@@ -9,6 +9,7 @@ A RESTful API for managing books and their authors, built with NestJS, TypeScrip
 - [Database Choice](#database-choice)
 - [Getting Started](#getting-started)
 - [API Documentation](#api-documentation)
+- [Swagger/OpenAPI](#swaggeropenapi)
 - [Postman Collection](#postman-collection)
 - [Testing](#testing)
 - [Project Structure](#project-structure)
@@ -30,6 +31,7 @@ A RESTful API for managing books and their authors, built with NestJS, TypeScrip
 - **Language**: TypeScript 5.x
 - **Database**: SQLite (with TypeORM)
 - **Validation**: class-validator, class-transformer
+- **Documentation**: Swagger/OpenAPI 3.0, Postman
 - **Testing**: Jest, Supertest
 - **Package Manager**: pnpm
 - **Configuration**: @nestjs/config
@@ -298,6 +300,77 @@ All errors follow a consistent format:
 }
 ```
 
+## 📖 Swagger/OpenAPI
+
+**Interactive API documentation** is automatically generated and available at:
+
+```
+http://localhost:3000/api-docs
+```
+
+### Features
+
+- ✅ **Interactive UI** - Try out endpoints directly in your browser
+- ✅ **Auto-Generated** - Always in sync with your code
+- ✅ **Complete Documentation** - All endpoints, parameters, and schemas
+- ✅ **Request/Response Examples** - Realistic sample data
+- ✅ **Schema Validation** - See all validation rules
+- ✅ **OpenAPI 3.0 Spec** - Export for client SDK generation
+
+### What's Included
+
+**Documented Endpoints:**
+- 🏥 Health & Info (2 endpoints)
+- 👤 Authors CRUD (5 endpoints)
+- 📚 Books CRUD (5 endpoints)
+
+**For Each Endpoint:**
+- Summary and detailed description
+- Request body schemas with examples
+- Query parameter documentation
+- Response status codes (200, 201, 204, 400, 404, 409)
+- Response schemas
+- Error responses
+
+### Quick Start
+
+1. **Start the API**
+   ```bash
+   pnpm run start:dev
+   ```
+
+2. **Open Swagger UI**
+   ```
+   http://localhost:3000/api-docs
+   ```
+
+3. **Try it out!**
+   - Click any endpoint
+   - Click "Try it out"
+   - Fill in parameters
+   - Click "Execute"
+   - See the response!
+
+### Export OpenAPI Spec
+
+Visit:
+```
+http://localhost:3000/api-docs-json
+```
+
+Use the exported JSON for:
+- Client SDK generation (TypeScript, Python, Java, etc.)
+- API testing tools
+- Documentation portals
+- Contract testing
+
+### Swagger Tags
+
+Endpoints are organized by:
+- `health` - Health check and API info
+- `authors` - Author management
+- `books` - Book management
+
 ## 📮 Postman Collection
 
 **Professional API testing made easy!** A complete Postman collection is included with:
@@ -478,7 +551,7 @@ test/
    - Query optimization
 
 4. **Documentation**
-   - Swagger/OpenAPI integration
+   - ✅ Swagger/OpenAPI integration (COMPLETED)
    - ✅ Postman collection (COMPLETED)
 
 5. **DevOps**

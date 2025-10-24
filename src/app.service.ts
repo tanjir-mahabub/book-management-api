@@ -16,7 +16,8 @@ export class AppService {
       },
       documentation: {
         readme: 'https://github.com/tanjir-mahabub/book-management-api',
-        apiDocs: 'Coming soon (Swagger)',
+        swagger: '/api-docs',
+        postman: '/postman',
       },
     };
   }
