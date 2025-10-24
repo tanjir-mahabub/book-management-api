@@ -9,7 +9,7 @@ import { BooksModule } from './modules/books/books.module';
   imports: [
     TypeOrmModule.forRoot({
       type: 'sqlite',
-      database: 'db.sqlite',
+      database: process.env.NODE_ENV === 'test' ? ':memory:' : 'db.sqlite',
       autoLoadEntities: true,
       synchronize: true,
     }),
