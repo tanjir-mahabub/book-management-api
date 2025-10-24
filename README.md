@@ -71,7 +71,7 @@ pnpm install
 # Setup environment variables (optional)
 cp config.env.template .env
 
-# Run in development mode
+# Run in development mode (auto-seeds database with sample data)
 pnpm run start:dev
 
 # Build for production
@@ -80,6 +80,29 @@ pnpm run build
 # Run in production mode
 pnpm run start:prod
 ```
+
+### Database Seeding
+
+The database **automatically seeds with sample data** on first run in development mode:
+
+- **8 Famous Authors** (J.K. Rowling, George Orwell, Jane Austen, etc.)
+- **18 Classic Books** (1984, Harry Potter, Pride and Prejudice, etc.)
+- All with real ISBNs and publication dates
+
+**Manual Seeding Commands:**
+```bash
+# Seed database manually
+pnpm run seed
+
+# Clear all data
+pnpm run seed:clear
+
+# Clear and re-seed
+pnpm run seed:clear && pnpm run seed
+```
+
+> **Note**: Seeding is idempotent - it won't duplicate data if already seeded.  
+> See [Database Seed Documentation](src/database/seed/README.md) for more details.
 
 ### Environment Variables
 
